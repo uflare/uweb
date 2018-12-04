@@ -16,6 +16,9 @@ type RunHandler = func(*sync.Map)
 func BootPlugins() error {
 	for _, name := range strings.Split(os.Getenv("SERVER_PLUGINS_ENABLED"), ",") {
 		name = strings.ToLower(strings.TrimSpace(name))
+		if name == "" {
+			continue
+		}
 		filename := filepath.Join(os.Getenv("SERVER_PLUGINS_DIR"), name)
 		plgn, err := plugin.Open(filename)
 		if err != nil {
