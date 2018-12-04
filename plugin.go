@@ -10,7 +10,7 @@ import (
 )
 
 // RunHandler - the run function within a plugin
-type RunHandler = func(*sync.Map)
+type RunHandler = func(*sync.Map) error
 
 // BootPlugins - initialize the plugins
 func BootPlugins() error {
@@ -32,7 +32,9 @@ func BootPlugins() error {
 		if !ok {
 			return errors.New("plugin " + name + " doesn't implements the RunHandler(*sync.Map)")
 		}
-		fn(globalContext)
+		if err := fn(globalContext); err != nil {
+			return err
+		}
 	}
 	return nil
 }
