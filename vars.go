@@ -29,6 +29,6 @@ func init() {
 	runtime.GOMAXPROCS(*flagWorkersCount)
 
 	if err := godotenv.Overload(*flagEnvFile); err != nil {
-		log.Fatal("[.env]", err.Error())
+		log.Fatal("[.env] ", err.Error())
 	}
 }
