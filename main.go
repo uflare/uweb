@@ -4,6 +4,8 @@ import (
 	"log"
 	"os"
 
+	"github.com/go-playground/validator"
+
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 )
@@ -12,6 +14,7 @@ func main() {
 	e := echo.New()
 
 	e.HideBanner = true
+	e.Validator = &Validator{validator: validator.New()}
 
 	e.Pre(middleware.RemoveTrailingSlash())
 	e.Use(middleware.CORS())
