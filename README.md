@@ -4,7 +4,7 @@ uWeb
 
 How
 ===
-> just write a go plugin that has a `Run(*sync.Map)` function `go build -buildmode=plugins` and add it to the `.env` and start the `uweb` server
+> just write a go plugin that has a `Run(*sync.Map)` function, sync.Map has `*echo.Echo` with key `echo`,  `go build -buildmode=plugin` and add it to the `.env` and start the `uweb` server
 
 Credits
 =======
